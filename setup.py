@@ -3,9 +3,10 @@ setup(
     name="pykernel",
     version="0.1.0",
     description="Python & text Windows CMD Editior written with only native libaries",
-    py_modules=["editor","TIME"],
+    py_modules=["pykernel","TIME"],
     package_dir={"":"code"},
     url="https://github.com/coolnicecool/editor",
+    license="LINCENSE.rst",
     author="Raleigh Priour",
     author_email="raleigh@1337maps.com"
 )
