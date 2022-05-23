@@ -16,7 +16,7 @@ class Editor():
         self.program_name=getForegroundWindowTitle()
         self.window.Length-=1 # grabs line for title
         if self.called:
-            sys.argv=["editor.py"]
+            sys.argv=["pykernel.py"]
             sys.argv.extend(args)
         #if not self.called: # collect parameters if ran from cmd
         self.args=sys.argv
@@ -29,7 +29,7 @@ class Editor():
             self.named=False
         else: # filename given
             self.named=True
-            self.argument=" ".join(self.args[1:]) # removes editor.py from arguments and rejoins them
+            self.argument=" ".join(self.args[1:]) # removes pykernel.py from arguments and rejoins them
             self.name=self.args[1]
             if os.path.isfile(self.name):
                 with open(self.name,"r") as File:
@@ -579,7 +579,7 @@ class Editor():
                 break      
             with open("preview.txt","w+") as file:                                        
              file.write(contents)    
-            a="start cmd /c python editor.py preview.txt" 
+            a="start cmd /c python pykernel.py preview.txt" 
             os.system(a) 
             done_=input("Are You Happy With The Format of The File [y/n]:").lower()
             if done_ in ("y","yes"):
@@ -815,7 +815,7 @@ class Editor():
         with open("editor_help.txt","r") as help_file:
             with open("help.txt","w+") as tmp_file:
                 tmp_file.write(help_file.read())
-        os.system("start cmd /c python editor.py help.txt")
+        os.system("start cmd /c python pykernel.py help.txt")
     def paste(self):
         data=get_clipboard()
         text=data.replace("\r","").split("\n")

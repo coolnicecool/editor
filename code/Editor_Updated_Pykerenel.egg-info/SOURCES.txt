@@ -1,0 +1,6 @@
+README.md
+setup.py
+code/Editor_Updated_Pykerenel.egg-info/PKG-INFO
+code/Editor_Updated_Pykerenel.egg-info/SOURCES.txt
+code/Editor_Updated_Pykerenel.egg-info/dependency_links.txt
+code/Editor_Updated_Pykerenel.egg-info/top_level.txt

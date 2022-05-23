@@ -1,0 +1,12 @@
+LICENSE.rst
+README.md
+setup.cfg
+setup.py
+code/Editor.egg-info/PKG-INFO
+code/Editor.egg-info/SOURCES.txt
+code/Editor.egg-info/dependency_links.txt
+code/Editor.egg-info/top_level.txt
+code/editor.egg-info/PKG-INFO
+code/editor.egg-info/SOURCES.txt
+code/editor.egg-info/dependency_links.txt
+code/editor.egg-info/top_level.txt
