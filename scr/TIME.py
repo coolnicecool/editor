@@ -14,7 +14,21 @@ def getForegroundWindowTitle() -> Optional[str]:
         return buf.value
     else:
         return None
+kernel32 = ctypes.WinDLL('kernel32', use_last_error=True)
+device = r'\\.\CONIN$'
+def lock():
+    with open(device, 'r') as con:
+        hCon = msvcrt.get_osfhandle(con.fileno())
+        kernel32.SetConsoleMode(hCon, 0x0080) 
+def unlock():   
+    with open(device, 'r') as con:
+        hCon = msvcrt.get_osfhandle(con.fileno())
+        kernel32.SetConsoleMode(hCon, 0x0040) 
 PRINT=print
+EXIT=exit
+def exit():
+    unlock()
+    EXIT()
 def print(*w,**k)-> None:
     if msvcrt.kbhit():
         if msvcrt.getch() ==b"\x03": #exits program if ^C was entered
@@ -48,11 +62,6 @@ def print(*w,**k)-> None:
         with open(filename,"w+") as file:
             file.write(String)              
 os.system("color") # sets up class and stuff don't mess with
-kernel32 = ctypes.WinDLL('kernel32', use_last_error=True)
-device = r'\\.\CONIN$'
-with open(device, 'r') as con:
-    hCon = msvcrt.get_osfhandle(con.fileno())
-    kernel32.SetConsoleMode(hCon, 0x0080)    
 user32 = ctypes.windll.user32
 handle=user32.GetForegroundWindow()
 rect = wintypes.RECT()

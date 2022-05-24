@@ -12,6 +12,7 @@ class Editor():
         called=True    
     first_time=True    
     def __init__(self,*args)-> None:
+        lock()
         self.window=properties()
         self.program_name=getForegroundWindowTitle()
         self.window.Length-=1 # grabs line for title
@@ -140,7 +141,7 @@ class Editor():
                 tmp=str(count)
                 self.string+="Word Count:"+tmp+" "*(w-len(tmp)-11)     
             self.string+="\u001b[0m"   
-            print("\r\x1b[1;1H"+self.string,end="",flush=1)      
+            print("\r\x1b[1;1H"+self.string,end="",flush=1)     
             ###start 2
             try:
                 key=self.get_key()
@@ -250,6 +251,7 @@ class Editor():
                                 answer=input("Are You Sure You Want To Delete This File File [y/n]:").lower()
                                 if answer in ("y","yes"):
                                     os.remove(self.name)
+                                    unlock()
                                     raise SystemExit("Delted File")
                             if key == 23: # ^ w toggles word count
                                 self.word_count=not self.word_count
@@ -382,6 +384,7 @@ class Editor():
                 a=c[:]  
             return a,b    
         else:
+            unlock()
             raise LookupError("Not In Highlighting Mode")                    
     def highlight_delete(self):
         if self.highlight[0]!=None and self.highlight[1]!=None:
@@ -495,7 +498,8 @@ class Editor():
         if not self.saved:
             answer = input("Work Is Unsaved Do You Want To Save Your Work [y/n]:").lower()         
             if answer in ("y","yes"):
-                self.save()                            
+                self.save()      
+        unlock()                      
         raise SystemExit("\nUser Exited Program")                    
     def print(self):
         self.save()
