@@ -12,7 +12,6 @@ class Editor():
         called=True    
     first_time=True    
     def __init__(self,*args)-> None:
-        lock()
         self.window=properties()
         self.program_name=getForegroundWindowTitle()
         self.window.Length-=1 # grabs line for title
@@ -87,8 +86,8 @@ class Editor():
             self.snap_shot_index=-1
             self.snap()# create copy of important variables
             self.snap_shot_index=0
-            
     def loop(self):
+        lock()
         while not self.exit:
             self.output=1
             self.string=self.info+self.saves[self.saved]
